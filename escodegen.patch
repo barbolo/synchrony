@@ -1,0 +1,8 @@
+339c339
+<         result = reg.toString();
+---
+>         result = reg?.toString() || '"failed_to_generate_deobfuscated_code"';
+341c341
+<         if (reg.source) {
+---
+>         if (reg?.source) {

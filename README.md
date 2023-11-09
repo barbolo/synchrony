@@ -1,3 +1,25 @@
+## How to use this fork
+
+```bash
+git clone https://github.com/barbolo/synchrony.git
+cd synchrony
+
+# install/build
+npm install
+npm run build
+
+# apply patch to escodegen
+# - literals that fail parsing will become "failed_to_generate_deobfuscated_code"
+patch node_modules/@javascript-obfuscator/escodegen/escodegen.js < escodegen.patch
+
+# download obfuscated script
+curl URL_TO_OBFUSCATED_JS -o ./obfuscated.js
+
+# Run obfuscator
+node dist/cli.js deobfuscate ./obfuscated.js
+```
+
+
 # synchrony
 
 ![rip javascript-obfuscator](/.github/hm.png)
