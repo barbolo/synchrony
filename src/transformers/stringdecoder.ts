@@ -461,9 +461,10 @@ export default class StringDecoder extends Transformer<StringDecoderOptions> {
           if (Guard.isIfStatement(body[2])) {
             // check for B64 charset
 
-            if (!Guard.isBlockStatement(body[2].consequent)) return
-            if (body[2].consequent.body.length <= 1) return
+            if (!Guard.isBlockStatement(body[2].consequent)) return;
+            // if (body[2].consequent.body.length <= 1) return
             if (
+              body[2].consequent.body[0] &&
               Guard.isExpressionStatement(body[2].consequent.body[0]) &&
               Guard.isAssignmentExpression(
                 body[2].consequent.body[0].expression
@@ -488,6 +489,7 @@ export default class StringDecoder extends Transformer<StringDecoderOptions> {
               })
             }
             if (
+              body[2].consequent.body[1] &&
               Guard.isExpressionStatement(body[2].consequent.body[1]) &&
               Guard.isAssignmentExpression(
                 body[2].consequent.body[1].expression
